@@ -1,0 +1,24 @@
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme_rootpwd
+      MYSQL_DATABASE: eagle_db
+      MYSQL_USER: changeme
+      MYSQL_PASSWORD: changeme
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: changeme_rootpwd
+    ports:
+      - "8080:80"
