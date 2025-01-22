@@ -1,3 +1,2 @@
-Projet de creation d'un SIEM
-
-:)
+## Architecture v1
+![architecture v1 schema](img/architecture.png)
