@@ -1,0 +1,19 @@
+# PHP avec PDO
+FROM php:8.2-apache
+
+RUN apt-get update && apt-get install -y \
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libzip-dev \
+    unzip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) pdo pdo_mysql gd zip
+
+RUN a2enmod rewrite
+
+RUN chmod -R 755 /var/log/apache2
+
+WORKDIR /var/www/html
+
+EXPOSE 80
