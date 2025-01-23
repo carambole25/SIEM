@@ -18,8 +18,6 @@ try {
 
 if (isset($_POST['apikey']) && isset($_POST['hostname']) && isset($_POST['log'])){
     $apikey = htmlspecialchars($_POST['apikey']);
-    #$hostname htmlspecialchars($_POST['hostname']);
-    #$log htmlspecialchars($_POST['log']);
 
     $sql = "SELECT * FROM `api_keys` WHERE api_key = (?)";
     $stmt= $pdo->prepare($sql);
@@ -27,9 +25,15 @@ if (isset($_POST['apikey']) && isset($_POST['hostname']) && isset($_POST['log'])
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($result) {
-        echo "la clé d'api est valide !";
+        $hostname = htmlspecialchars($_POST['hostname']);
+        $log = htmlspecialchars($_POST['log']);
+
+        $sql = "INSERT INTO events (hostname, log) VALUES (?, ?)";
+        $stmt= $pdo->prepare($sql);
+        $stmt->execute([$hostname, $log]);
+
     } else {
-        echo "/!\ clé d'api non valide";
+        echo "Clé d'api non invalide";
     }
 }
 
