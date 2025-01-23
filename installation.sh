@@ -21,10 +21,10 @@ echo "phpmyadmin : localhost:7777 (for debug)";
 echo "indexer : localhost:8080";
 echo "user interface : localhost:80";
 
-sudo docker compose -f infra/docker-compose.yml up -d
-
 # github delete the empty folder so i recreate it
 mkdir agent/linux/save
 
 zip -r agent_linux.zip agent/linux
 mv agent_linux.zip infra/ui
+
+sudo docker compose -f infra/docker-compose.yml up
