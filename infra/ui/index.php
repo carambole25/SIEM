@@ -8,5 +8,8 @@
     </head>
     <body>
         <a href="generate_api_key.php">Generer des clés API</a>
+        
+        <h1>Récupérer les agents : </h1>
+        <p>wget http://srv_ip/agent_linux.zip</p>
     </body>
 </html>

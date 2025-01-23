@@ -22,3 +22,6 @@ echo "indexer : localhost:8080";
 echo "user interface : localhost:80";
 
 sudo docker compose -f infra/docker-compose.yml up -d
+
+zip -r agent_linux.zip agent/linux
+mv agent_linux.zip infra/ui
