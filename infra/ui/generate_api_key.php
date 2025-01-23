@@ -33,7 +33,7 @@ if (isset($_GET['key'])) {
         <script src="script.js"></script>
     </head>
     <body>
-        <a id="api_key" href="">Run PHP Function</a>
+        <a id="api_key" href="">Get api key</a>
     </body>
 </html>
 

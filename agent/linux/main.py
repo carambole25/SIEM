@@ -45,3 +45,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    send_to_bdd("coucou")

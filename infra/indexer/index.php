@@ -17,9 +17,20 @@ try {
 }
 
 if (isset($_POST['apikey']) && isset($_POST['hostname']) && isset($_POST['log'])){
-    echo htmlspecialchars($_POST['apikey']);
-    echo htmlspecialchars($_POST['hostname']);
-    echo htmlspecialchars($_POST['log']);
+    $apikey = htmlspecialchars($_POST['apikey']);
+    #$hostname htmlspecialchars($_POST['hostname']);
+    #$log htmlspecialchars($_POST['log']);
+
+    $sql = "SELECT * FROM `api_keys` WHERE api_key = (?)";
+    $stmt= $pdo->prepare($sql);
+    $stmt->execute([$apikey]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        echo "la clé d'api est valide !";
+    } else {
+        echo "/!\ clé d'api non valide";
+    }
 }
 
 ?>
