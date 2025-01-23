@@ -2,10 +2,10 @@ import time
 import subprocess
 import json
 
-API_KEY = open("conf/api_key",'r').read()
+API_KEY = open("conf/api_key",'r').read().replace("\n", "")
 CONF_FILE_TO_MONITORE = "conf/files_to_monitore.lst"
 OFFSET_FILE_START_PATH = "save/offset_"
-HOSTNAME = open("conf/hostname.conf",'r').read()
+HOSTNAME = open("conf/hostname.conf",'r').read().replace("\n", "")
 
 def read_new_lines(file_path, offset_file):
     # offset = c'est le dernière octet lu
