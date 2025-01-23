@@ -1,5 +1,8 @@
 import time
+import subprocess
+import json
 
+API_KEY = open("conf/api_key",'r').read()
 CONF_FILE_TO_MONITORE = "conf/files_to_monitore.lst"
 OFFSET_FILE_START_PATH = "save/offset_"
 HOSTNAME = open("conf/hostname.conf",'r').read()
@@ -26,8 +29,9 @@ def read_new_lines(file_path, offset_file):
 
     return new_lines
 
-def send_to_bdd(lines):
-    print(HOSTNAME, lines)
+def send_to_bdd(log):
+    data = json.dumps({"apikey": API_KEY, "hostname": HOSTNAME, "log": log,})
+    subprocess.run(["curl", "-X", "POST", "http://localhost:8080", "-d", f"apikey={API_KEY}&hostname={HOSTNAME}&log={log}"])
 
 def main():
     file_to_monitore = open(CONF_FILE_TO_MONITORE,'r').readlines()
@@ -36,8 +40,8 @@ def main():
         log_file = log_file.replace("\n", "")
         offset_file_path = OFFSET_FILE_START_PATH + log_file.split("/")[-1]
         new_lines = read_new_lines(log_file, offset_file_path)
-        for lines in new_lines:
-            send_to_bdd(lines)
+        for log in new_lines:
+            send_to_bdd(log)
 
 if __name__ == '__main__':
     main()
