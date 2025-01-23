@@ -1,1 +1,0 @@
-- [x] Crée les tables automatiquement si elle n'existe pas
