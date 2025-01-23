@@ -5,8 +5,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: changeme_rootpwd
       MYSQL_DATABASE: eagle_db
-      MYSQL_USER: changeme
-      MYSQL_PASSWORD: changeme
+      MYSQL_USER: changeme_MYSQL_USER
+      MYSQL_PASSWORD: changeme_MYSQL_PASSWORD
     volumes:
       - ./mysql_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql

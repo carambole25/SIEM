@@ -1,8 +1,8 @@
 <?php
 $host = 'db';
 $dbname = 'eagle_db';
-$username = 'changeme';
-$password = 'changeme';
+$username = 'changeme_MYSQL_USER';
+$password = 'changeme_MYSQL_PASSWORD';
 
 
 try {
