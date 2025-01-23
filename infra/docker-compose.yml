@@ -24,7 +24,7 @@ services:
     ports:
       - "7777:80"
 
-  php:
+  php-indexer:
     build:
       context: .
       dockerfile: Dockerfile_php_indexer
@@ -33,3 +33,13 @@ services:
       - ./indexer/log:/var/log/apache2
     ports:
       - 8080:80
+
+  php-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile_php_ui
+    volumes:
+      - ./ui/:/var/www/html
+      - ./ui/log:/var/log/apache2
+    ports:
+      - 80:80
