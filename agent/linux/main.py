@@ -36,7 +36,7 @@ def read_new_lines(file_path, offset_file):
 
 def send_to_bdd(log):
     data = json.dumps({"apikey": API_KEY, "hostname": HOSTNAME, "log": log,})
-    subprocess.run(["curl", "-X", "POST", "http://localhost:8080", "-d", f"apikey={API_KEY}&hostname={HOSTNAME}&log={log}"])
+    subprocess.run(["curl", "-X", "POST", "http://IP_INDEXER:8080", "-d", f"apikey={API_KEY}&hostname={HOSTNAME}&log={log}"])
 
 def main():
     file_to_monitore = open(CONF_FILE_TO_MONITORE,'r').readlines()

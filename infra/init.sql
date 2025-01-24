@@ -2,7 +2,7 @@ USE eagle_db;
 CREATE TABLE IF NOT EXISTS events (
     id INT AUTO_INCREMENT PRIMARY KEY,
     hostname VARCHAR(100),
-    log VARCHAR(100)
+    log TEXT
 );
 CREATE TABLE IF NOT EXISTS api_keys (
     id INT AUTO_INCREMENT PRIMARY KEY,

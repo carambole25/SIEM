@@ -3,6 +3,11 @@
 echo "Absolute path to the main.py file (example : /dir/example/main.py):"
 read path_to_main
 
+echo "IP of the indexer :"
+read ip_indexer
+
+sed -i "s/IP_INDEXER = .*/IP_INDEXER = '$ip_indexer'/" main.py
+
 sudo chown root:root "$path_to_main"
 
 sudo chmod +x "$path_to_main"
