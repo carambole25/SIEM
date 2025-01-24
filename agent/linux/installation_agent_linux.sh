@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Absolute path to the main.py file (e.g., /dir/example/main.py):"
+echo "Absolute path to the main.py file (example : /dir/example/main.py):"
 read path_to_main
 
 sudo chown root:root "$path_to_main"
