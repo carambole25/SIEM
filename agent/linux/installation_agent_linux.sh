@@ -6,7 +6,9 @@ read path_to_main
 echo "IP of the indexer :"
 read ip_indexer
 
-sed -i "s/IP_INDEXER = .*/IP_INDEXER = '$ip_indexer'/" main.py
+sed -i "s|http://IP_INDEXER:8080|http://$ip_indexer:8080|" main.py
+
+read toto
 
 sudo chown root:root "$path_to_main"
 
