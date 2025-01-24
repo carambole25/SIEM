@@ -1,6 +1,11 @@
 import time
 import subprocess
 import json
+import os
+import sys
+
+# aller le répertoire où se trouve le script
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 API_KEY = open("conf/api_key",'r').read().replace("\n", "")
 CONF_FILE_TO_MONITORE = "conf/files_to_monitore.lst"

@@ -1,7 +1,12 @@
-echo "absolute path to the main.py file (/dir/example/main.py):"
+#!/bin/bash
+
+echo "Absolute path to the main.py file (e.g., /dir/example/main.py):"
 read path_to_main
 
-# Ajouter la commande dans le crontab
-(crontab -l 2>/dev/null; echo "*/5 * * * * sudo python3 $path_to_main") | crontab -
+sudo chown root:root "$path_to_main"
+
+sudo chmod +x "$path_to_main"
+
+sudo bash -c "(sudo crontab -l 2>/dev/null; echo \"*/5 * * * * python3 $path_to_main\") | sudo crontab -"
 
 echo "Ok !"
