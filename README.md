@@ -29,9 +29,11 @@ Unzip it
 unzip agent_linux.zip
 ```
 
--> Get an api key from the ui and put it in the conf/api_key
--> List files to monitor in file_to_monitore.lst
--> Choose a hostname for the agent in hostname.conf
+- Get an api key from the ui and put it in the conf/api_key
+
+- List files to monitor in file_to_monitore.lst
+
+- Choose a hostname for the agent in hostname.conf
 
 Launch the installation script :
 ```
