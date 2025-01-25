@@ -50,13 +50,16 @@ if ($results) {
         <script src="script.js"></script>
     </head>
     <body>
+
         <form action="" method="get">
         <label for="query">query to bdd :</label>
         <textarea id="query" name="query" rows="10" cols="50"></textarea><br>
         <button type="submit">Submit</button>
         </form> 
+
         <br>
         <br>
+
         <a href="generate_api_key.php">Generer des clés API</a>
         
         <h1>Récupérer les agents : </h1>
