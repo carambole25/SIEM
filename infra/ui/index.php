@@ -30,12 +30,21 @@ $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if ($results) {
-    foreach ($results as $row) {
-        foreach ($row as $value) {
-            echo htmlspecialchars($value);
-        }
-        echo "<br>";
+    echo "<table border='1'>";
+    echo "<tr>";
+    foreach (array_keys($results[0]) as $header) {
+        echo "<th>" . htmlspecialchars($header) . "</th>";
     }
+    echo "</tr>";
+
+    foreach ($results as $row) {
+        echo "<tr>";
+        foreach ($row as $value) {
+            echo "<td>" . htmlspecialchars($value) . "</td>";
+        }
+        echo "</tr>";
+    }
+    echo "</table>";
 }
 
 
@@ -48,11 +57,12 @@ if ($results) {
         <title>Titre de la page</title>
         <link rel="stylesheet" href="style.css">
         <script src="script.js"></script>
+        <link rel="stylesheet" type="text/css" href="style_index.css">
     </head>
     <body>
-
+        <br>
         <form action="" method="get">
-        <label for="query">query to bdd :</label>
+        <label for="query">Query to bdd :</label><br>
         <textarea id="query" name="query" rows="10" cols="50"></textarea><br>
         <button type="submit">Submit</button>
         </form> 
@@ -62,7 +72,9 @@ if ($results) {
 
         <a href="generate_api_key.php">Generer des clés API</a>
         
-        <h1>Récupérer les agents : </h1>
-        <p>wget http://srv_ip/agent_linux.zip</p>
+        <br>
+        <br>
+
+        <h1>Récupérer les agents : wget http://srv_ip/agent_linux.zip</h1>
     </body>
 </html>

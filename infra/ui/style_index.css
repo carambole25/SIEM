@@ -1,0 +1,112 @@
+body {
+    font-family: "Tahoma", sans-serif;
+    background-color: #c0c0c0;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 1rem;
+    color: black;
+    text-shadow: 1px 1px white, -1px -1px gray;
+    margin-bottom: 20px;
+    margin-left: 3%;
+}
+
+form {
+    background-color: #e0e0e0;
+    border: 2px solid black;
+    padding: 10px;
+    width: 60%;
+    margin: 20px auto;
+    box-shadow: 4px 4px 0px gray;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    border: 2px solid black;
+    font-family: "Courier New", Courier, monospace;
+    color: black;
+    padding: 5px;
+}
+
+button {
+    background-color: #d0d0d0;
+    border: 2px solid black;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: black;
+    cursor: pointer;
+    box-shadow: 2px 2px 0px gray;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #b0b0b0;
+}
+
+button:active {
+    box-shadow: none;
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    border: 2px solid black;
+    background-color: #d0d0d0;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 3%;
+    box-shadow: 2px 2px 0px gray;
+}
+
+a:hover {
+    background-color: #b0b0b0;
+}
+
+a:active {
+    box-shadow: none;
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 4px 4px 0px gray;
+}
+
+th, td {
+    border: 2px solid black;
+    padding: 5px;
+    text-align: left;
+    background-color: white;
+}
+
+th {
+    background-color: #d0d0d0;
+    text-shadow: 1px 1px white, -1px -1px gray;
+}
+
+p {
+    background-color: #e0e0e0;
+    border: 2px solid black;
+    padding: 5px;
+    width: fit-content;
+    margin: 20px auto;
+    box-shadow: 2px 2px 0px gray;
+}
