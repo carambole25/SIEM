@@ -78,3 +78,11 @@ if ($results) {
         <h1>Récupérer les agents : wget http://srv_ip/agent_linux.zip</h1>
     </body>
 </html>
+
+<script>
+    // récupérer la var depuis le php
+    // Les pip successif permet de netoyer l'entré pour éviter les xss et autres problèmes
+    const currentQuery = <?php echo json_encode($query, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT); ?>;
+    console.log(currentQuery);
+    document.getElementById('query').value = currentQuery;
+</script>
