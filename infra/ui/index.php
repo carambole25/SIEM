@@ -18,34 +18,40 @@ try {
 # ça ressemble à un injection sql mais c'est volontaire
 # l'utilisateur peu query la bdd
 # faudra à l'avenir faire en sorte qu'il puisse que consulter les donners (readonly) et que events pas apikey
-if (isset($_GET['query'])){
-    $query = $_GET['query']; 
+if (isset($_GET['save'])){
+    $sql = "INSERT INTO `save_query`(`query`) VALUES (?)";
+    $stmt= $pdo->prepare($sql);
+    $stmt->execute([$_GET['query']]);
 } else {
-    $query = "SELECT * FROM `events`";
-}
-
-$sql = $query;
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-if ($results) {
-    echo "<table border='1'>";
-    echo "<tr>";
-    foreach (array_keys($results[0]) as $header) {
-        echo "<th>" . htmlspecialchars($header) . "</th>";
+    if (isset($_GET['query'])){
+        $query = $_GET['query']; 
+    } else {
+        $query = "SELECT * FROM `events`";
     }
-    echo "</tr>";
+    $sql = $query;
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    foreach ($results as $row) {
+    if ($results) {
+        echo "<table border='1'>";
         echo "<tr>";
-        foreach ($row as $value) {
-            echo "<td>" . htmlspecialchars($value) . "</td>";
+        foreach (array_keys($results[0]) as $header) {
+            echo "<th>" . htmlspecialchars($header) . "</th>";
         }
         echo "</tr>";
+
+        foreach ($results as $row) {
+            echo "<tr>";
+            foreach ($row as $value) {
+                echo "<td>" . htmlspecialchars($value) . "</td>";
+            }
+            echo "</tr>";
+        }
+        echo "</table>";
     }
-    echo "</table>";
 }
+
 
 
 ?>
@@ -64,8 +70,25 @@ if ($results) {
         <form action="" method="get">
         <label for="query">Query to bdd :</label><br>
         <textarea id="query" name="query" rows="10" cols="50"></textarea><br>
-        <button type="submit">Submit</button>
-        </form> 
+        <br>
+        <label for="save">Save ?</label><input type="checkbox" id="save" name="save"/>
+        <button type="submit">Submit/Save</button>
+        </form>
+
+        <div id='liste_saved_query'>
+        <?php
+            $sql = "SELECT query FROM `save_query`";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            echo "Query sauvegardé :<br>";
+            foreach ($results as $row) {
+                foreach ($row as $value) {
+                    echo "<a href=/?query=". urlencode($value) . ">". htmlspecialchars($value) ."</a>";
+                }
+            }
+        ?>
+        <div>
 
         <br>
         <br>
@@ -85,4 +108,5 @@ if ($results) {
     const currentQuery = <?php echo json_encode($query, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT); ?>;
     console.log(currentQuery);
     document.getElementById('query').value = currentQuery;
+    document.getElementById('tosave').value = currentQuery;
 </script>
