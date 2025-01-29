@@ -20,6 +20,7 @@ if (isset($_GET['key'])) {
     $sql = "INSERT INTO api_keys (api_key) VALUES (?)";
     $stmt= $pdo->prepare($sql);
     $stmt->execute([$generated_key]);
+    echo $generated_key;
 }
 
 ?>
