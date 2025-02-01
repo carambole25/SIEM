@@ -1,6 +1,9 @@
 import os
 from evtx import PyEvtxParser
+import subprocess
 
+API_KEY = open("conf/api_key",'r').read().replace("\n", "")
+HOSTNAME = open("conf/hostname.conf",'r').read().replace("\n", "")
 EVTX_CONF_PATH = "conf/evtx_srv.lst"
 SAVE_START_PATH = "save/cache_"
 
@@ -19,12 +22,9 @@ def read_evtx(file, regex, save_event_id):
             if re in record['data'] and record["event_record_id"] > save_event_id:
                 print(f'Event Record ID: {record["event_record_id"]}')
                 last_event_id = record["event_record_id"]
-                # Envoyer l'event à la bdd
-                #print(f'Event Timestamp: {record["timestamp"]}')
-                #print(record['data'])
-                #print(f'------------------------------------------')
+                log = str(record["timestamp"] + record['data'])
+                subprocess.run(["curl", "-X", "POST", "http://IP_INDEXER:8080", "-d", f"apikey={API_KEY}&hostname={HOSTNAME}&log={log}"])
     return last_event_id
-
 
 def read_save(end_path):
     save = SAVE_START_PATH+end_path.split('\\')[-1]+".cache"
